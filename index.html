@@ -13,15 +13,21 @@
     <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/a-super-sky@1.1.0/super-sky.js"></script>
     <script src="controls.js"></script>
+    <link rel="stylesheet" href="main.css">
 <!--     <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script> -->
 
     <title>webvr</title>
   </head>
   <body>
+    <div class="container">
+      <h1><span>Welcome to BasketballXR</span></h1>
+      <p>Your current higscore is: <span id="highScoreTextTitle">0</span></p>
+      <a id="myEnterVRButton" href="#"><span>🏀Play🏀</span></a>
+    </div>
     <a-scene
       id="scene"
       physics="debug:true; restitution: 0.9; "
-
+      vr-mode-ui="enterVRButton: #myEnterVRButton;"
       
     >
     <a-assets>
@@ -210,20 +216,26 @@
       </a-entity>
       <script>
         let score = 0;
-
-         var audioCity = new Audio('assets/sounds/citySounds.mp3');
+      
+        let enterVRBtn = document.querySelector("#myEnterVRButton");
+        enterVRBtn.addEventListener("click", ()=>{
+var audioCity = new Audio('assets/sounds/citySounds.mp3');
              audioCity.play();
              audioCity.loop = true;
-             audioCity.volume = 0.1;
+             audioCity.volume = 0.2;
+        })
+         
 
         if (localStorage.getItem("score") !== null) {
-  console.log("damn")
+
   document
                 .querySelector("#highScoreText")
                 .setAttribute(
                   "text",
                   "width: 6; color: red; value: Score: " + localStorage.getItem("score")
                 );
+                document.querySelector("#highScoreTextTitle")
+                .innerHTML = localStorage.getItem("score")
 }
 
         var playerEl = document.querySelector("#score");

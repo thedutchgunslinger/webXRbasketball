@@ -1,0 +1,68 @@
+.container{
+ position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-color: rgba(0, 0, 0, 0.443);
+    display: flex;
+    flex-direction: column;
+}
+
+.container > h1 {
+    margin: 5rem auto 2rem auto;
+    font-size: 3rem;
+    font-weight: bold;
+     color: #fff;
+  text-align: center;
+  text-decoration: none;
+  border: 10px solid white;
+  outline: 0;
+  padding: 12px 35px;
+  display: inline-block;
+  transform: skew(-21deg);
+
+}
+
+.container > h1 > span {
+    display: inline-block;
+  transform: skew(21deg);
+}
+
+.container p {
+    margin: 0 auto;
+    font-size: 2rem;
+}
+
+#myEnterVRButton{
+   
+  color: #fff;
+  /* background: #ec8e13; */
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  border: 10px solid white;
+  outline: 0;
+  font-size: 3rem;
+  padding: 12px 35px;
+  display: inline-block;
+  transform: skew(-21deg);
+  margin: 2rem auto;
+  transition: all 0.2s ease-in-out;
+  
+}
+
+#myEnterVRButton > span {
+  display: inline-block;
+  transform: skew(21deg);
+}
+
+#myEnterVRButton:hover{
+    scale: 1.1;
+
+}
