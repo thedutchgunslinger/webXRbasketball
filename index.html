@@ -24,7 +24,7 @@
       
     >
     <a-assets>
-        <a-asset-item id="city" src="assets/models/untitled.glb"></a-asset-item>
+        <a-asset-item id="city" src="assets/models/city.glb"></a-asset-item>
         <a-asset-item id="nav" src="assets/models/nav.glb"></a-asset-item>
         <img id="skymap" src="assets/textures/clear-sunny-sky.jpg">
         <img id="balltexture" src="assets/textures/balldimpled.png">
@@ -34,7 +34,7 @@
         src="#skymap"
       ></a-sky>
       <a-entity gltf-model="#city" scale="3 3 3"></a-entity>
-      <a-entity  gltf-model="#nav" position="4.8 10 3.7" rotation="0 0 0" nav-mesh></a-entity>
+      <a-entity  gltf-model="#nav" position="4.8 0.15 3.7" rotation="0 0 0" nav-mesh visible="false"></a-entity>
       <a-entity id="rig" movement-controls="constrainToNavMesh: true" position="0.5 0 0">
         <a-camera id="camera" position="0 1.6 0" look-controls></a-camera>
         <a-entity
