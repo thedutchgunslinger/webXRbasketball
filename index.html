@@ -11,6 +11,7 @@
     <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
     <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/a-super-sky@1.1.0/super-sky.js"></script>
     <script src="controls.js"></script>
 <!--     <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script> -->
 
@@ -20,7 +21,7 @@
     <a-scene
       id="scene"
       physics="debug:true; restitution: 0.9; "
-      fog="type: linear; color: #AAA"
+
       
     >
     <a-assets>
@@ -30,9 +31,10 @@
         <img id="balltexture" src="assets/textures/balldimpled.png">
         <img id="grasstexture" src="assets/textures/istockphoto-865924416-612x612.png">
     </a-assets>
-      <a-sky
+      <!-- <a-sky
         src="#skymap"
-      ></a-sky>
+      ></a-sky> -->
+      <a-super-sky cycleduration="1" groundcolor="#7BC8A4" ></a-super-sky>
       <a-entity gltf-model="#city" scale="3 3 3"></a-entity>
       <a-entity  gltf-model="#nav" position="4.8 0.15 3.7" rotation="0 0 0" nav-mesh visible="false"></a-entity>
       <a-entity id="rig" movement-controls="constrainToNavMesh: true" position="0.5 0 0">
@@ -67,12 +69,19 @@
           snap-turn="target: #rig; reference: #camera; angle: 45"
         ></a-entity>
       </a-entity>
+      <!-- <a-light  type="point" color="red" ></a-light> -->
+      <a-entity static-body="shape: sphere; sphereRadius: 0.1;" light="type: spot; angle: 30; color: #fff5b6; intensity: 1"  position="-7.6 4 -5" rotation="-45 225 0"></a-entity>
+      <a-entity static-body="shape: sphere; sphereRadius: 0.1;" light="type: spot; angle: 30; color: #fff5b6; intensity: 1"  position="-7.6 4 7.8" rotation="-45 -45 0"></a-entity>
+
+      <a-entity static-body="shape: sphere; sphereRadius: 0.1;" light="type: spot; angle: 30; color: #fff5b6; intensity: 1"  position="8.6 4 -5" rotation="-45 135 0"></a-entity>
+      <a-entity static-body="shape: sphere; sphereRadius: 0.1;" light="type: spot; angle: 30; color: #fff5b6; intensity: 1"  position="8.6 4 7.8" rotation="-45 -315 0"></a-entity>
       <!--   FLOOR     -->
       <a-plane
+      id="ground"
         static-body
         color="ffffff"
         rotation="-90 0 0"
-        scale="15 15 15"
+        scale="20 20 20"
         collision-filter="collidesWith: ball, basket"
         visible="false"
       ></a-plane>
@@ -196,12 +205,19 @@
       </a-entity>
       <script>
         let score = 0;
+
+         var audioCity = new Audio('assets/sounds/citySounds.mp3');
+             audioCity.play();
+             audioCity.loop = true;
+             audioCity.volume = 0.1;
+
         var playerEl = document.querySelector("#score");
         var canListen = true; // a variable to store the state of the event listener
         playerEl.addEventListener("collide", function (e) {
           if (canListen) {
+            console.log(e.detail.body.id)
             // check if the event listener can listen
-            if (e.detail.body.id == 7) {
+            if (e.detail.body.id == 11) {
               score++;
               document
                 .querySelector("#scoreText")
@@ -221,6 +237,40 @@
             }, 1000);
           }
         });
+        var ground = document.querySelector("#ground");
+var lastCollisionTime = 0;
+var collisionCount = 0;
+var resetTimeout;
+ground.addEventListener("collide", function (e) {
+  var now = Date.now();
+  if (e.detail.body.id == 11 && now - lastCollisionTime > 200) {
+    // console.log("hit the ground");
+    lastCollisionTime = now;
+    collisionCount = 0;
+    clearTimeout(resetTimeout);
+    resetTimeout = setTimeout(function() {
+      collisionCount = 0;
+    }, 1000); // Reset after 1 second
+  }
+  if (collisionCount < 1) {
+    var audio = new Audio('assets/sounds/mixkit-ball-bouncing-in-the-ground-2077.wav');
+    audio.play();
+    collisionCount++;
+  }else{
+    
+  }
+});
+var ball = document.querySelector("#ball")
+ball.addEventListener("collide", function (e) {
+  // console.log(e.detail.body.id)
+  if (e.detail.body.id == 12 || e.detail.body.id == 13 || e.detail.body.id == 14 || e.detail.body.id == 15 || e.detail.body.id == 16) {
+      var audio = new Audio('assets/sounds/mixkit-basketball-ball-hitting-the-net-2084.wav');
+    audio.play();
+      // Do something when the ball hits the basket, e.g. increase score
+    }
+});
+
+
       </script>
     </a-scene>
   </body>
