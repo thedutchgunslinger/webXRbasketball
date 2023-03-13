@@ -139,6 +139,11 @@
         text="value: Score: 0; width: 6;color: red;"
         position="0 4.7 -7.4.95"
       ></a-entity>
+       <a-entity
+        id="highScoreText"
+        text="value: HighScore: 0; width: 6;color: red;"
+        position="0 4.4 -7.4.95"
+      ></a-entity>
       <a-sphere
         id="ball"
         grabbable
@@ -211,6 +216,16 @@
              audioCity.loop = true;
              audioCity.volume = 0.1;
 
+        if (localStorage.getItem("score") !== null) {
+  console.log("damn")
+  document
+                .querySelector("#highScoreText")
+                .setAttribute(
+                  "text",
+                  "width: 6; color: red; value: Score: " + localStorage.getItem("score")
+                );
+}
+
         var playerEl = document.querySelector("#score");
         var canListen = true; // a variable to store the state of the event listener
         playerEl.addEventListener("collide", function (e) {
@@ -228,6 +243,17 @@
               document
                 .querySelector("#scoreTextBasket")
                 .setAttribute("text", "width: 6; color: red; value: " + score);
+                
+                if(score > localStorage.getItem("score")){
+                  document
+                .querySelector("#highScoreText")
+                .setAttribute(
+                  "text",
+                  "width: 6; color: red; value: Score: " + score
+                );
+                localStorage.setItem('score', score);
+                }
+                
               console.log(score);
             }
             canListen = false; // set the state to false
@@ -281,17 +307,9 @@ ball.addEventListener("collide", function (e) {
 AFRAME.registerComponent('reset-button', {
   init: function () {
     const el = this.el; // Reference to the element this component is attached to
-    const rigEl = document.querySelector('#rig');
-    const ballEl = document.querySelector('#ball');
-   
     
     el.addEventListener('xbuttondown', () => {
-      // Reset the position of the rig and ball
-      rigEl.object3D.position.set(0, 0, 0);
-      ballEl.object3D.position.set(0, 1, -3);
-      
-      // Reset the score
-      score = 0;
+    location.reload()
     });
   }
 });
