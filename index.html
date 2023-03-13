@@ -261,9 +261,9 @@ ground.addEventListener("collide", function (e) {
   }
 });
 var ball = document.querySelector("#ball")
-
+ var canListen2 = true; 
 ball.addEventListener("collide", function (e) {
-          if (canListen) {
+          if (canListen2) {
             
             // check if the event listener can listen
            if (e.detail.body.id == 12 || e.detail.body.id == 13 || e.detail.body.id == 14 || e.detail.body.id == 16) {
@@ -271,10 +271,10 @@ ball.addEventListener("collide", function (e) {
     audio.play();
       // Do something when the ball hits the basket, e.g. increase score
     }
-            canListen = false; // set the state to false
+            canListen2 = false; // set the state to false
             setTimeout(function () {
               // use a setTimeout function to reset the state after one second
-              canListen = true;
+              canListen2 = true;
             }, 1000);
           }
         });
