@@ -51,7 +51,7 @@
                                    collidesWith: ball, basket;
                                    collisionForces: false"
           hand-controls="hand: left"
-   
+          reset-button
         >
         </a-entity>
         <a-entity
@@ -278,7 +278,23 @@ ball.addEventListener("collide", function (e) {
             }, 1000);
           }
         });
-
+AFRAME.registerComponent('reset-button', {
+  init: function () {
+    const el = this.el; // Reference to the element this component is attached to
+    const rigEl = document.querySelector('#rig');
+    const ballEl = document.querySelector('#ball');
+   
+    
+    el.addEventListener('xbuttondown', () => {
+      // Reset the position of the rig and ball
+      rigEl.object3D.position.set(0, 0, 0);
+      ballEl.object3D.position.set(0, 1, -3);
+      
+      // Reset the score
+      score = 0;
+    });
+  }
+});
 
 
       </script>
