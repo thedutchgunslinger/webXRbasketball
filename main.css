@@ -39,7 +39,7 @@
     font-size: 2rem;
 }
 
-#myEnterVRButton{
+#myEnterVRButton, #controlsBtn{
    
   color: #fff;
   /* background: #ec8e13; */
@@ -57,12 +57,33 @@
   
 }
 
-#myEnterVRButton > span {
+#myEnterVRButton > span, #controlsBtn > span, #controls > span {
   display: inline-block;
   transform: skew(21deg);
 }
 
-#myEnterVRButton:hover{
+#myEnterVRButton:hover, #controlsBtn:hover{
     scale: 1.1;
 
 }
+
+#controls {
+   display: none;
+  color: #fff;
+  /* background: #ec8e13; */
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  border: 10px solid white;
+  outline: 0;
+  padding: 12px 35px;
+  transform: skew(-21deg);
+  margin: 2rem auto;
+  transition: all 0.2s ease-in-out;
+  
+}
+
+#controls p {
+    font-size: 2rem;
+}
+

@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="main.css">
 <!--     <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script> -->
 
-    <title>webvr</title>
+    <title>BasketballXR</title>
   </head>
   <body>
     <a id="myARButton" href="#"></a>
@@ -24,11 +24,23 @@
       <h1><span>Welcome to BasketballXR</span></h1>
       <p>Your current higscore is: <span id="highScoreTextTitle">0</span></p>
       <a id="myEnterVRButton" href="#"><span>🏀Play🏀</span></a>
+      <p id="controlsBtn" href="#"><span id="showControlsText">Show Controls</span></p>
+      <div id="controls">
+        <span>
+        <p>controls</p>
+        <br>
+        <p>Left thumbstick: move</p>
+        <p>Right thumbstick: snap-turn</p>
+        <p>Grip Buttons: grab ball</p>
+        <p>X-button: reload</p>
+        </span>
+      </div>
     </div>
     <a-scene
       id="scene"
       physics="debug:true; restitution: 0.95; "
       vr-mode-ui="enterVRButton: #myEnterVRButton; enterARButton: #myARButton;"
+      loading-screen="dotsColor: black; backgroundColor: #f16222"
       
     >
     <a-assets>
@@ -225,6 +237,22 @@ var audioCity = new Audio('assets/sounds/citySounds.mp3');
              audioCity.loop = true;
              audioCity.volume = 0.2;
         })
+
+        let showControls = document.querySelector("#controlsBtn");
+        showControls.addEventListener("click", ()=>{
+          let controls = document.getElementById('controls');
+          if(controls.style.display == "none"){
+
+            controls.style.display= "inline-block";
+            let showControlsText = document.getElementById("showControlsText");
+            showControlsText.innerHTML = "Hide controls";
+          } else {
+            controls.style.display="none";
+            showControlsText.innerHTML="Show controls"
+          }
+          
+        })
+         
          
 
         if (localStorage.getItem("score") !== null) {
