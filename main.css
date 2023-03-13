@@ -15,13 +15,13 @@
 }
 
 .container > h1 {
-    margin: 5rem auto 2rem auto;
-    font-size: 3rem;
+    margin: 2rem auto 1rem auto;
+    font-size: 1rem;
     font-weight: bold;
      color: #fff;
   text-align: center;
   text-decoration: none;
-  border: 10px solid white;
+  border: 6px solid white;
   outline: 0;
   padding: 12px 35px;
   display: inline-block;
@@ -36,7 +36,7 @@
 
 .container p {
     margin: 0 auto;
-    font-size: 2rem;
+    font-size: 14px;
 }
 
 #myEnterVRButton, #controlsBtn{
@@ -46,13 +46,13 @@
   font-weight: 700;
   text-align: center;
   text-decoration: none;
-  border: 10px solid white;
+  border: 6px solid white;
   outline: 0;
-  font-size: 3rem;
+  font-size: 10px;
   padding: 12px 35px;
   display: inline-block;
   transform: skew(-21deg);
-  margin: 2rem auto;
+  margin: 1rem auto;
   transition: all 0.2s ease-in-out;
   
 }
@@ -74,16 +74,16 @@
   font-weight: 700;
   text-align: center;
   text-decoration: none;
-  border: 10px solid white;
+  border: 6px solid white;
   outline: 0;
   padding: 12px 35px;
   transform: skew(-21deg);
-  margin: 2rem auto;
+  margin: 1rem auto;
   transition: all 0.2s ease-in-out;
   
 }
 
 #controls p {
-    font-size: 2rem;
+    font-size: 14px;
 }
 
