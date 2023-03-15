@@ -374,8 +374,9 @@ Orbitron-Black.json ; shader: msdf;"
         var collisionCount = 0;
         var resetTimeout;
         ground.addEventListener("collide", function (e) {
+          console.log(e.detail.body.id);
           var now = Date.now();
-          if (e.detail.body.id == 11 && now - lastCollisionTime > 200) {
+          if (e.detail.body.id == 13 && now - lastCollisionTime > 200) {
             // console.log("hit the ground");
             lastCollisionTime = now;
             collisionCount = 0;
@@ -400,10 +401,10 @@ Orbitron-Black.json ; shader: msdf;"
           if (canListen2) {
             // check if the event listener can listen
             if (
-              e.detail.body.id == 12 ||
-              e.detail.body.id == 13 ||
               e.detail.body.id == 14 ||
-              e.detail.body.id == 16
+              e.detail.body.id == 15 ||
+              e.detail.body.id == 16 ||
+              e.detail.body.id == 17
             ) {
               var audio = new Audio(
                 "assets/sounds/mixkit-basketball-ball-hitting-the-net-2084.wav"
