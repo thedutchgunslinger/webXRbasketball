@@ -427,6 +427,16 @@ Orbitron-Black.json ; shader: msdf;"
 
             el.addEventListener("xbuttondown", () => {
               score = 0;
+              document
+                .querySelector("#scoreText")
+                .setAttribute(
+                  "text",
+                  "width: 20; color: white; font: https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/orbitron/Orbitron-Black.json ; shader: msdf;value: " +
+                    score
+                );
+              document
+                .querySelector("#scoreTextBasket")
+                .setAttribute("text", "width: 6; color: red; value: " + score);
               let player = document.getElementById("rig");
               let ball = document.getElementById("ball");
               player.setAttribute("position", "0.5 0 0");
