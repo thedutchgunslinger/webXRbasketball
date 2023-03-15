@@ -354,6 +354,10 @@ Orbitron-Black.json ; shader: msdf;"
               document
                 .querySelector("#scoreTextBasket")
                 .setAttribute("text", "width: 6; color: red; value: " + score);
+                 var audio = new Audio(
+                "assets/sounds/Score - Sound Effect for editing.mp3"
+              );
+              audio.play();
 
               if (score > localStorage.getItem("score")) {
                 document
