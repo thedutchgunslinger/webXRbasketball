@@ -426,6 +426,7 @@ Orbitron-Black.json ; shader: msdf;"
             const el = this.el; // Reference to the element this component is attached to
 
             el.addEventListener("xbuttondown", () => {
+              score = 0;
               let player = document.getElementById("rig");
               let ball = document.getElementById("ball");
               player.setAttribute("position", "0.5 0 0");
