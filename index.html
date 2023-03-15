@@ -57,6 +57,9 @@
           id="grasstexture"
           src="assets/textures/istockphoto-865924416-612x612.png"
         />
+        <img id="logo" src="assets/images/logo green.png">
+        <img id="finn" src="assets/images/finn.png">
+        <img id="glu" src="assets/images/glu.png">
       </a-assets>
       <!-- <a-sky
         src="#skymap"
@@ -295,7 +298,9 @@ Orbitron-Black.json ; shader: msdf;"
           ignoresleep="true"
         ></a-cylinder>
       </a-entity>
-
+       <a-image src="#logo" position="22 1 20"></a-image>
+       <a-image src="#finn" position="-26 1 -14"></a-image>
+       <a-image src="#glu" position="-12 1 26" rotation="0 -90 0"></a-image>
       <script>
         let score = 0;
 
@@ -336,7 +341,6 @@ Orbitron-Black.json ; shader: msdf;"
         var canListen = true; // a variable to store the state of the event listener
         playerEl.addEventListener("collide", function (e) {
           if (canListen) {
-            console.log(e.detail.body.id);
             // check if the event listener can listen
             if (e.detail.body.id == 13) {
               score++;
@@ -362,7 +366,7 @@ Orbitron-Black.json ; shader: msdf;"
                 localStorage.setItem("score", score);
               }
 
-              console.log(score);
+              
             }
             canListen = false; // set the state to false
             setTimeout(function () {
@@ -376,10 +380,8 @@ Orbitron-Black.json ; shader: msdf;"
         var collisionCount = 0;
         var resetTimeout;
         ground.addEventListener("collide", function (e) {
-          console.log(e.detail.body.id);
           var now = Date.now();
           if (e.detail.body.id == 13 && now - lastCollisionTime > 200) {
-            // console.log("hit the ground");
             lastCollisionTime = now;
             collisionCount = 0;
             clearTimeout(resetTimeout);
@@ -399,7 +401,6 @@ Orbitron-Black.json ; shader: msdf;"
         var ball = document.querySelector("#ball");
         var canListen2 = true;
         ball.addEventListener("collide", function (e) {
-          console.log(e.detail.body.id);
           if (canListen2) {
             // check if the event listener can listen
             if (
