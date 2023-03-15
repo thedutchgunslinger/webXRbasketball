@@ -270,6 +270,7 @@ Orbitron-Black.json ; shader: msdf;"
             id="scoreTextBasket"
             text="value: 0; width: 6;color: red;"
             position="2.9 0.1 0.04"
+            collision-filter="group: basket; collidesWith: ball"
           ></a-entity
         ></a-box>
 
@@ -294,6 +295,7 @@ Orbitron-Black.json ; shader: msdf;"
           ignoresleep="true"
         ></a-cylinder>
       </a-entity>
+
       <script>
         let score = 0;
 
@@ -424,7 +426,9 @@ Orbitron-Black.json ; shader: msdf;"
             const el = this.el; // Reference to the element this component is attached to
 
             el.addEventListener("xbuttondown", () => {
-              location.reload();
+              let player = document.getElementById("rig");
+              player.setAttribute('position', "0 0 0");
+              ball.setAttribute('position', "0 0 0");
             });
           },
         });
