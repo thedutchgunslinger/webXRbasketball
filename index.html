@@ -427,9 +427,12 @@ Orbitron-Black.json ; shader: msdf;"
 
             el.addEventListener("xbuttondown", () => {
               let player = document.getElementById("rig");
-              let ball = document.getElementById("ball")
-              player.setAttribute('position', "0 0 0");
-              ball.setAttribute('position', "0 0 0");
+              let ball = document.getElementById("ball");
+              player.setAttribute("position", "0 0 0");
+              ball.setAttribute("position", "0 0 0");
+              if (ball.components["dynamic-body"]) {
+                ball.components["dynamic-body"].syncToPhysics();
+              } // doesn't work for box1
             });
           },
         });
